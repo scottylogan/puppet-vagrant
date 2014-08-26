@@ -18,6 +18,9 @@ Puppet::Type.newtype :vagrant_box do
   newparam :source do
   end
 
+  newparam :vprovider do
+  end
+
   newparam :force do
     validate do |value|
       unless value.is_a? Boolean
@@ -32,7 +35,7 @@ Puppet::Type.newtype :vagrant_box do
 
   autorequire :vagrant_plugin do
     Array.new.tap do |a|
-      case vprovider = self[:name].partition('/').last
+      case vprovider = self[:vprovider]
       when 'virtualbox'
         # built in
       when 'vmware_fusion'

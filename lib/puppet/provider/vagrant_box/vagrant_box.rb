@@ -4,15 +4,13 @@ Puppet::Type.type(:vagrant_box).provide :vagrant_box do
   include Puppet::Util::Execution
 
   def create
-    name, vprovider = @resource[:name].split('/')
 
     args = [
       "box",
       "add",
-      name,
       @resource[:source],
       "--provider",
-      vprovider
+      @resource[:vprovider],
     ]
 
     args << "--force" if @resource[:force]
@@ -21,16 +19,15 @@ Puppet::Type.type(:vagrant_box).provide :vagrant_box do
   end
 
   def destroy
-    name, vprovider = @resource[:name].split('/')
-
-    vagrant "box", "remove", name, "--provider", vprovider
+    vagrant "box", "remove", @resource[:source], "--provider", @resource[:vprovider]
   end
 
   def exists?
     if @resource[:force]
       false
     else
-      name, vprovider = @resource[:name].split('/')
+      name = @resource[:source]
+      vprovider = @resource[:vprovider]
 
       boxes = vagrant "box", "list"
       boxes =~ /^#{name}\s+\(#{vprovider}(, .+)?\)/
