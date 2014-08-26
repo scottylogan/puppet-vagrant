@@ -6,6 +6,7 @@
 
 class vagrant(
   $version = '1.6.3',
+  $default_vprovider = 'virtualbox',
   $completion = false
 ) {
   validate_bool($completion)
