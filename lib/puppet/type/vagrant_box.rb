@@ -27,7 +27,7 @@ Puppet::Type.newtype :vagrant_box do
   end
 
   autorequire :package do
-    %w(Vagrant_1_4_2 vagrant)
+    %w(Vagrant_1_6_3 vagrant)
   end
 
   autorequire :vagrant_plugin do
