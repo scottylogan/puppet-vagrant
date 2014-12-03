@@ -1,6 +1,6 @@
 # Vagrant Puppet Module for Boxen
 
-[![Build Status](https://travis-ci.org/boxen/puppet-vagrant.png?branch=master)](https://travis-ci.org/boxen/puppet-vagrant)
+[![Build Status](https://travis-ci.org/scottylogan/puppet-vagrant.png?branch=master)](https://travis-ci.org/scottylogan/puppet-vagrant)
 
 Install [Vagrant](http://www.vagrantup.com/) on your Mac.
 
