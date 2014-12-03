@@ -4,44 +4,44 @@ Puppet::Type.type(:vagrant_box).provide :vagrant_box do
   include Puppet::Util::Execution
 
   def create
-    name, vprovider = @resource[:name].split('/')
 
-    cmd = [
-      "/usr/bin/vagrant",
+    args = [
       "box",
       "add",
-      name,
       @resource[:source],
       "--provider",
-      vprovider
+      @resource[:vprovider],
     ]
 
-    cmd << "--force" if @resource[:force]
+    args << "--force" if @resource[:force]
 
-    execute cmd, opts
+    vagrant(*args)
   end
 
   def destroy
-    name, vprovider = @resource[:name].split('/')
 
-    cmd = [
-      "/usr/bin/vagrant",
+    args = [
       "box",
       "remove",
       name,
+      --provider,
+      @resource[:vprovider],
     ]
 
-    execute cmd, opts
+    vagrant(*args)
   end
 
   def exists?
     if @resource[:force]
       false
     else
-      name, vprovider = @resource[:name].split('/')
-
-      File.directory? \
-        "/Users/#{Facter[:boxen_user].value}/.vagrant.d/boxes/#{name}/#{vprovider}"
+      boxes = vagrant "box", "list"
+      if @resource[:source] =~ /^http/
+        match = name
+      else
+        match = @resource[:source]
+      end
+      boxes =~ /^#{match}\s+\(#{@resource[:vprovider]}(, .+)?\)/
     end
   end
 
@@ -61,4 +61,10 @@ Puppet::Type.type(:vagrant_box).provide :vagrant_box do
       :uid                => Facter[:boxen_user].value,
     }
   end
+
+  def vagrant(*args)
+    cmd = ["/usr/bin/vagrant"] + args
+    execute cmd, opts
+  end
+
 end
