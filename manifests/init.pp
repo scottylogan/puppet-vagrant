@@ -34,5 +34,5 @@ class vagrant(
     provider => 'homebrew',
     require  => Homebrew::Tap['homebrew/completions'],
   }
-  
+
 }
