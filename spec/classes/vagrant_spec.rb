@@ -20,8 +20,8 @@ describe 'vagrant' do
   describe 'when installing bash completion' do
     let (:params) {{:completion => true}}
 
-    it { should contain_package('Vagrant_1.6.3')}
-    it { should contain_package('Vagrant_1.6.3').with_source('https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.dmg')}
+    it { should contain_package('Vagrant_1.6.5')}
+    it { should contain_package('Vagrant_1.6.5').with_source('https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5.dmg')}
     it { should contain_package('vagrant-completion').with_provider('homebrew')}
   end
 
