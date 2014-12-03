@@ -35,11 +35,4 @@ class vagrant(
     require  => Homebrew::Tap['homebrew/completions'],
   }
   
-  homebrew::tap { 'homebrew/completions': }
-
-  package { 'vagrant-completion':
-    ensure   => $ensure_pkg,
-    provider => 'homebrew',
-    require  => Homebrew::Tap['homebrew/completions'],
-  }  
 }
