@@ -23,7 +23,16 @@ class vagrant(
   }
 
   file { "/Users/${::boxen_user}/.vagrant.d":
-    ensure => directory
+    ensure  => directory,
+    require => Package["Vagrant_${version}"],
+  }
+
+  homebrew::tap { 'homebrew/completions': }
+
+  package { 'vagrant-completion':
+    ensure   => $ensure_pkg,
+    provider => 'homebrew',
+    require  => Homebrew::Tap['homebrew/completions'],
   }
   
   homebrew::tap { 'homebrew/completions': }

@@ -2,8 +2,8 @@
 #
 # Usage:
 #
-#   vagrant::box { 'precise64/vmware_fusion':
-#     source   => 'http://files.vagrantup.com/precise64_vmware_fusion.box'
+#   vagrant::box { 'ubuntu-14.04':
+#     source   => 'puppetlabs/ubuntu-14.04-64-puppet'
 #   }
 
 define vagrant::box(
