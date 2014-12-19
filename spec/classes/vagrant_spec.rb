@@ -4,7 +4,7 @@ describe 'vagrant' do
   let (:facts) { default_test_facts }
 
   describe 'when not specifiying a version' do
-    it { should contain_package('Vagrant_1.6.5').with({
+    it { should contain_package('Vagrant_1.7.1').with({
       :ensure   => 'installed',
       :provider => 'pkgdmg'
     })}
@@ -20,8 +20,8 @@ describe 'vagrant' do
   describe 'when installing bash completion' do
     let (:params) {{:completion => true}}
 
-    it { should contain_package('Vagrant_1.6.5')}
-    it { should contain_package('Vagrant_1.6.5').with_source('https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5.dmg')}
+    it { should contain_package('Vagrant_1.7.1')}
+    it { should contain_package('Vagrant_1.7.1').with_source('https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.dmg')}
     it { should contain_package('vagrant-completion').with_provider('homebrew')}
   end
 
