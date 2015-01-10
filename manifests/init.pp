@@ -5,7 +5,7 @@
 #   include vagrant
 
 class vagrant(
-  $version = '1.7.1',
+  $version = '1.7.2',
   $completion = false,
 ) {
 
